@@ -87,13 +87,11 @@
 
 #startbtn:hover {
     background: linear-gradient(45deg, #FF8E71, #FF6F61);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
     transform: scale(1.30);
 }
 
 #startbtn:active {
-    transform: scale(0.70);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: scale(0.70);  
 }
 
 }
@@ -121,7 +119,6 @@
 
 #score-area p:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 #time {
@@ -171,3 +168,34 @@
         width: 100%;
     }
 }
+
+#game-area {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border: 2px solid #1F3B4D;
+    background-color: #ffffff;
+    display: grid;
+    gap: 1px;
+    box-sizing: border-box;
+}
+
+.cell {
+    width: 100%;
+    padding-bottom: 100%;
+    background-color: #bfbfbf;
+    border: 1px solid #ffffff; 
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.cell:hover {
+    background-color: #666363; 
+}
+
+.cell:active {
+    background-color: #3bd209;
+}
+
