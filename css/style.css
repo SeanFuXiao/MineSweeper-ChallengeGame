@@ -134,7 +134,7 @@
     font-family: monospace;
 }
 
-#score {
+/* #score {
     color: #28a745;
     background: linear-gradient(45deg, #28a745, #5cb85c);
     color: white;
@@ -142,7 +142,7 @@
     border-radius: 8px;
     font-family: monospace;
     
-}
+} */
 
 #mine-left {
     color: #dc3545;

@@ -14,6 +14,7 @@ let currentDifficulty = 'Easy';
 let rows, cols, totalMines;
 let cells = []; 
 let gameOver = false;
+let mineLeft;
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -43,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+
 //=====================================================================================================
 //==========================================start and restart btn======================================
     startBtn.addEventListener('click', function () {
@@ -55,12 +58,15 @@ document.addEventListener('DOMContentLoaded', function () {
 //=====================================================================================================
 //=========================================Create cells for new game===================================
     function newGame() {
+        
         const difficulty = dropdownBox.value;
         ({ rows, cols, totalMines } = DIFFICULTY_LEVELS[difficulty]);
 
         gameArea.innerHTML = '';
         cells = [];
         gameOver = false;
+
+       
 
         const cellSize = 30;  
         const gapSize = 1;
@@ -90,6 +96,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             cells.push(cell); 
             gameArea.appendChild(cell);
+
+           
 //===========================================Create cells==============================================
 //=====================================================================================================
 
@@ -112,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     handleRightClick(cell);
                 });
             })(i);
+            
         }
 
 
@@ -123,6 +132,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
         placeMines();
         calculateAdjacentMines();
+
+
+//=====================================================================================================
+//=============================================set: mines left ========================================
+
+        mineLeft = totalMines;  
+
+        document.getElementById('mine-left').textContent = `Mines left: ${mineLeft}`;  
+        
+
+//=============================================set: mines left ========================================
+//=====================================================================================================
 
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -258,7 +279,7 @@ function isDifferentRow(index, adjacentIndex, direction) {
         if (cell.isMine) {
             cell.style.backgroundColor = 'red';
             gameOver = true;
-            alert('Game Over! You clicked on a mine.');
+            alert('Game Over ! YOU lOSE !');
             revealAllMines();
         } else {
             cell.style.backgroundColor = '#8FBC8F';
@@ -271,19 +292,25 @@ function isDifferentRow(index, adjacentIndex, direction) {
     }
 
 
-//=======================================right==========================================================
+//=======================================right and count mins=========================================
     
-    function handleRightClick(cell) {
-        if (cell.isFlagged) {
-            cell.isFlagged = false;
-            cell.textContent = '';
-            cell.classList.remove('is-flagged');
-        } else {
-            cell.isFlagged = true;
-            cell.textContent = '🏴‍☠️';
-            cell.classList.add('is-flagged');
-        }
+function handleRightClick(cell) {
+    if (cell.isFlagged) {
+        cell.isFlagged = false;
+        cell.textContent = '';
+        cell.classList.remove('is-flagged');
+        mineLeft++;
+    } else {
+        if (mineLeft === 0) return;
+        cell.isFlagged = true;
+        cell.textContent = '🏴‍☠️';
+        cell.classList.add('is-flagged');
+        mineLeft--;
     }
+
+//=======================================update mines=================================================
+    document.getElementById('mine-left').textContent = `Mines left: ${mineLeft}`;  
+}
 
 
 //=======================================both==========================================================
@@ -342,7 +369,7 @@ function isDifferentRow(index, adjacentIndex, direction) {
 function revealAllMines() {
     cells.forEach(cell => {
         if (cell.isMine) {
-            cell.style.backgroundColor = '#FF6F61';
+            cell.style.backgroundColor = '#ffd800';
             cell.style.transition = 'background-color 0.5s ease';
         }
     });
@@ -393,7 +420,7 @@ function revealAllMines() {
         const revealedCells = cells.filter(cell => cell.isRevealed);
         if (revealedCells.length === cells.length - totalMines) {
             gameOver = true;
-            alert('Congratulations! You have cleared all the mines.');
+            alert('Congratulations ! YOU WIN !');
         }
     }
 
