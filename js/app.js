@@ -288,7 +288,8 @@ function isDifferentRow(index, adjacentIndex, direction) {
         }
 
         cell.isRevealed = true;
-
+        cell.classList.add('revealed');
+        
         if (cell.isMine) {
             cell.style.backgroundColor = 'red';
             gameOver = true;
