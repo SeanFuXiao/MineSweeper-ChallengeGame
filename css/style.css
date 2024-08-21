@@ -335,3 +335,52 @@
 .cell.is-flagged {
     animation: flag 0.3s ease-out;
 }
+
+
+#darkmode {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.darkmode-checkbox {
+    display: none;
+}
+
+.darkmode-label {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    border-radius: 30px;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.4s, box-shadow 0.4s;
+}
+
+.darkmode-slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: white;
+    transition: transform 0.4s;
+    box-shadow: 0 2px 4px rgba(64, 64, 64, 0.883);
+}
+
+.darkmode-checkbox:checked + .darkmode-label {
+    background-color: #403f40;
+}
+
+.darkmode-checkbox:checked + .darkmode-label .darkmode-slider {
+    transform: translateX(30px);
+}
+
+.darkmode-text {
+    font-size: 1.2rem;
+    color: #e2e8ec;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgb(152, 2, 245);
+}

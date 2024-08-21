@@ -391,12 +391,12 @@ function revealAllMines() {
             cell.classList.add('exploded');
             cell.style.backgroundColor = '#ffd800';
             cell.style.transition = 'background-color 0.5s ease';
-        }, index * 30); 
+        }, index * 40); 
     });
 
     setTimeout(() => {
         showMessage('Game Over! YOU LOSE!');
-    }, mineCells.length * 30 + 50);
+    }, mineCells.length * 40 + 30);
 }
 
 
@@ -484,3 +484,6 @@ function checkWinCondition() {
     });
 }
 });
+
+
+
