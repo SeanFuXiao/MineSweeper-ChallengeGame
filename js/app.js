@@ -39,10 +39,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const startBtn = document.getElementById('startbtn');
     const gameArea = document.getElementById('game-area');
     const dropdownBox = document.getElementById('dropdownbox');
+    const restartBtn = document.getElementById('restartBtn');
+
+
 
 //=====================================================================================================
-//===========================================Create cells==============================================
+//==========================================start and restart btn======================================
     startBtn.addEventListener('click', function () {
+        newGame(); 
+    });
+
+    restartBtn.addEventListener('click', function () {
+        newGame(); 
+    });
+//=====================================================================================================
+//=========================================Create cells for new game===================================
+    function newGame() {
         const difficulty = dropdownBox.value;
         ({ rows, cols, totalMines } = DIFFICULTY_LEVELS[difficulty]);
 
@@ -125,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         console.log(totalCells);
         console.log(totalMines);
-    });
+    };
 
 
 //+++++++++++++++++++++++++++++++++++++++Test place mines++++++++++++++++++++++++++++++++++++++++++++++
