@@ -5,7 +5,7 @@ console.log('hello')
 const DIFFICULTY_LEVELS = {
     Easy: { rows: 9, cols: 9, totalMines: 10 },
     Medium: { rows: 16, cols: 16, totalMines: 40 },
-    Hard: { rows: 23, cols: 23, totalMines: 99 },
+    Hard: { rows: 23, cols: 23, totalMines: 70 },
 };
 
 
@@ -82,7 +82,7 @@ let gameOver = false;
             placeMines();
         
             
-
+            calculateAdjacentMines();
 
             
             //test
@@ -117,6 +117,41 @@ let gameOver = false;
             }
         }
 
+        function calculateAdjacentMines() {
+            const directions = [
+                -cols - 1,      -cols,      -cols + 1,  
+                -1,                             1,   
+                 cols - 1,       cols,       cols + 1     
+            ];
+        
+            
+            cells.forEach((cell, index) => {
+                if (cell.isMine) return;
+    
+                let adjacentMines = 0;
+                directions.forEach(direction => {
+                    const adjacentIndex = index + direction;
+                    if (
+                        adjacentIndex >= 0 &&
+                        adjacentIndex < cells.length &&
+                        !isDifferentRow(index, adjacentIndex, direction) &&
+                        cells[adjacentIndex].isMine
+                    ) {
+                        adjacentMines++;
+                    }
+                });
+                cell.adjacentMines = adjacentMines;
+                console.log(`Cell at index ${index} (row: ${Math.floor(index / cols)}, col: ${index % cols}) has ${adjacentMines} adjacent mines.`);
+
+            });
+        }
+
+        function isDifferentRow(index, adjacentIndex, direction) {
+            if (direction === -1 || direction === 1) {
+                return Math.floor(index / cols) !== Math.floor(adjacentIndex / cols);
+            }
+            return false;
+        }
         
     });
     
