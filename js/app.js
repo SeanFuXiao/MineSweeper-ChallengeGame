@@ -289,12 +289,12 @@ function isDifferentRow(index, adjacentIndex, direction) {
 
         cell.isRevealed = true;
         cell.classList.add('revealed');
-        
+
         if (cell.isMine) {
             cell.style.backgroundColor = 'red';
             gameOver = true;
             stopTimer();
-            showMessage('Game Over! YOU LOSE!');
+            // showMessage('Game Over! YOU LOSE!');
             revealAllMines();
         } else {
             cell.style.backgroundColor = '#8FBC8F';
@@ -384,13 +384,21 @@ function handleRightClick(cell) {
 //=======================================Function: reveal all mines and cells=========================
 
 function revealAllMines() {
-    cells.forEach(cell => {
-        if (cell.isMine) {
+    const mineCells = cells.filter(cell => cell.isMine && !cell.isRevealed);
+    
+    mineCells.forEach((cell, index) => {
+        setTimeout(() => {
+            cell.classList.add('exploded');
             cell.style.backgroundColor = '#ffd800';
             cell.style.transition = 'background-color 0.5s ease';
-        }
+        }, index * 30); 
     });
+
+    setTimeout(() => {
+        showMessage('Game Over! YOU LOSE!');
+    }, mineCells.length * 30 + 50);
 }
+
 
 
 
