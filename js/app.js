@@ -15,6 +15,9 @@ let rows, cols, totalMines;
 let cells = []; 
 let gameOver = false;
 let mineLeft;
+let timer = null;
+let startTime = null;
+let elapsedTime = 0;
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -41,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const gameArea = document.getElementById('game-area');
     const dropdownBox = document.getElementById('dropdownbox');
     const restartBtn = document.getElementById('restartBtn');
+    const timeElement = document.getElementById('time');
 
 
 
@@ -66,7 +70,10 @@ document.addEventListener('DOMContentLoaded', function () {
         cells = [];
         gameOver = false;
 
-       
+        stopTimer();
+        elapsedTime = 0;
+        timeElement.textContent = 'Time: 00:00';
+
 
         const cellSize = 30;  
         const gapSize = 1;
@@ -140,6 +147,8 @@ document.addEventListener('DOMContentLoaded', function () {
         mineLeft = totalMines;  
 
         document.getElementById('mine-left').textContent = `Mines left: ${mineLeft}`;  
+
+        
         
 
 //=============================================set: mines left ========================================
@@ -274,12 +283,17 @@ function isDifferentRow(index, adjacentIndex, direction) {
     function handleLeftClick(cell, index) {
         if (cell.isRevealed || gameOver || cell.isFlagged) return;
 
+        if (!timer) {
+            startTimer();
+        }
+
         cell.isRevealed = true;
 
         if (cell.isMine) {
             cell.style.backgroundColor = 'red';
             gameOver = true;
-            alert('Game Over ! YOU lOSE !');
+            stopTimer();
+            showMessage('Game Over! YOU LOSE!');
             revealAllMines();
         } else {
             cell.style.backgroundColor = '#8FBC8F';
@@ -288,7 +302,9 @@ function isDifferentRow(index, adjacentIndex, direction) {
                 revealEmptyCells(index);
             }
             checkWinCondition();
+            
         }
+       
     }
 
 
@@ -416,15 +432,46 @@ function revealAllMines() {
 //=====================================================================================================
 //==============================================win condition==========================================
 
-    function checkWinCondition() {
-        const revealedCells = cells.filter(cell => cell.isRevealed);
-        if (revealedCells.length === cells.length - totalMines) {
-            gameOver = true;
-            alert('Congratulations ! YOU WIN !');
-        }
+function checkWinCondition() {
+    const revealedCells = cells.filter(cell => cell.isRevealed);
+    if (revealedCells.length === cells.length - totalMines) {
+        gameOver = true;
+        stopTimer();  
+
+        setTimeout(() => {
+            showMessage('Congratulations! YOU WIN!');
+        }, 0);
+    }
+}
+
+    function startTimer() {
+        startTime = Date.now() - elapsedTime;
+        timer = setInterval(updateTime, 1000);
     }
 
+    function stopTimer() {
+        clearInterval(timer);
+        timer = null;
+    }
+
+    function updateTime() {
+        elapsedTime = Date.now() - startTime;
+        const seconds = Math.floor((elapsedTime / 1000) % 60);
+        const minutes = Math.floor((elapsedTime / 1000) / 60);
+        timeElement.textContent = `Time: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
 //==============================================win condition==========================================
 //=====================================================================================================
 
+    function showMessage(message) {
+     const messageContainer = document.getElementById('message-container');
+     const messageText = document.getElementById('message-text');
+     messageText.textContent = message;
+     messageContainer.style.display = 'flex';
+
+     const closeMessageBtn = document.getElementById('close-message-btn');
+     closeMessageBtn.addEventListener('click', () => {
+         messageContainer.style.display = 'none';
+    });
+}
 });
