@@ -204,7 +204,11 @@
     border: 1px solid #4B3E2F; 
     cursor: pointer;
     position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: black; 
     
 }
 

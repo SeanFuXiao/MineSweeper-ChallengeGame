@@ -261,7 +261,7 @@ function isDifferentRow(index, adjacentIndex, direction) {
             alert('Game Over! You clicked on a mine.');
             revealAllMines();
         } else {
-            cell.style.backgroundColor = '#ddd';
+            cell.style.backgroundColor = '#8FBC8F';
             cell.textContent = cell.adjacentMines > 0 ? cell.adjacentMines : '';
             if (cell.adjacentMines === 0) {
                 revealEmptyCells(index);
@@ -272,18 +272,18 @@ function isDifferentRow(index, adjacentIndex, direction) {
 
 
 //=======================================right==========================================================
+    
     function handleRightClick(cell) {
         if (cell.isFlagged) {
             cell.isFlagged = false;
             cell.textContent = '';
-            cell.style.backgroundColor = '';
+            cell.classList.remove('is-flagged');
         } else {
             cell.isFlagged = true;
-            cell.textContent = '🚩';
-            cell.style.backgroundColor = 'yellow';
+            cell.textContent = '🏴‍☠️';
+            cell.classList.add('is-flagged');
         }
     }
-
 
 
 //=======================================both==========================================================
@@ -339,13 +339,17 @@ function isDifferentRow(index, adjacentIndex, direction) {
 //=====================================================================================================
 //=======================================Function: reveal all mines and cells=========================
 
-    function revealAllMines() {
-        cells.forEach(cell => {
-            if (cell.isMine) {
-                cell.style.backgroundColor = 'red';
-            }
-        });
-    }
+function revealAllMines() {
+    cells.forEach(cell => {
+        if (cell.isMine) {
+            cell.style.backgroundColor = '#FF6F61';
+            cell.style.transition = 'background-color 0.5s ease';
+        }
+    });
+}
+
+
+
 
     function revealEmptyCells(index) {
         const directions = [
@@ -365,7 +369,7 @@ function isDifferentRow(index, adjacentIndex, direction) {
                 const adjacentCell = cells[adjacentIndex];
                 if (!adjacentCell.isRevealed && !adjacentCell.isMine) {
                     adjacentCell.isRevealed = true;
-                    adjacentCell.style.backgroundColor = '#ddd';
+                    adjacentCell.style.backgroundColor = '#8FBC8F';
                     adjacentCell.textContent = adjacentCell.adjacentMines > 0 ? adjacentCell.adjacentMines : '';
                     if (adjacentCell.adjacentMines === 0) {
                         revealEmptyCells(adjacentIndex);
