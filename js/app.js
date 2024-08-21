@@ -27,9 +27,12 @@ let gameOver = false;
     //function placeMines(); 
     //placeMines();
     //calculateAdjacentMines();
+    //function handleLeftClick();
+    //function handleRightClick();
+    //function handleBothClick();
 /*----------------------------- Event Listeners -----------------------------*/
     //startBtn.addEventListener;
-    
+    //Event: right, left, both click
 
 
 
@@ -39,6 +42,8 @@ let gameOver = false;
         const gameArea = document.getElementById('game-area');
         const dropdownBox = document.getElementById('dropdownbox');
     
+//=====================================================================================================
+//===========================================Create cells==============================================
         startBtn.addEventListener('click', function () {
             const difficulty = dropdownBox.value;
             ({ rows, cols, totalMines } = DIFFICULTY_LEVELS[difficulty]);
@@ -75,20 +80,49 @@ let gameOver = false;
                 cells.push(cell); 
                 gameArea.appendChild(cell);
 
-                
+
+
+
+//===========================================Create cells==============================================
+//=====================================================================================================
+
+
+
+//=====================================================================================================
+//==========================================Event: right, left, both click=============================               
+
+                cell.addEventListener('click', function() {
+                    handleLeftClick(cell, i);
+                });
+
+
+
+                cell.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();  
+                    handleRightClick(cell);
+                });
+
+
+
+                cell.addEventListener('mousedown', function(e) {
+                    if (e.buttons === 3) {  
+                        handleBothClick(cell, i);
+                    }
+                });
             }
-    
-            
+//==========================================Event: right, left, both click============================= 
+//=====================================================================================================
+
             placeMines();
         
             
             calculateAdjacentMines();
 
             
-            //test
-            //test
-            //test
-            //test
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++Test place mines++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++Test place mines++++++++++++++++++++++++++++++++++++++++++++++
+           
 
             cells.forEach((cell, index) => {
                 if (cell.isMine) {
@@ -98,13 +132,22 @@ let gameOver = false;
             
             console.log(totalCells);
             console.log(totalMines);
-
-            //test
-            //test
-            //test
-
+          
         });
+
+
+//+++++++++++++++++++++++++++++++++++++++Test place mines++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++Test place mines++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     
+
+
+
+//=====================================================================================================
+//===========================================Place mines===============================================
+
+
+
         function placeMines() {
             let minesPlaced = 0;
             while (minesPlaced < totalMines) {
@@ -117,6 +160,11 @@ let gameOver = false;
             }
         }
 
+//===========================================Place mines===============================================
+//=====================================================================================================
+
+//=====================================================================================================
+//===========================================calculateAdjacenMines=====================================
         function calculateAdjacentMines() {
             const directions = [
                 -cols - 1,      -cols,      -cols + 1,  
@@ -141,10 +189,30 @@ let gameOver = false;
                     }
                 });
                 cell.adjacentMines = adjacentMines;
-                console.log(`Cell at index ${index} (row: ${Math.floor(index / cols)}, col: ${index % cols}) has ${adjacentMines} adjacent mines.`);
+
+
+//===========================================calculateAdjacenMines=====================================
+//=====================================================================================================
+
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++Test adjacentMines mines++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++Test adjacentMines mines++++++++++++++++++++++++++++++++++++++
+
+
+    console.log(`adjacentMines at index ${index} (row: ${Math.floor(index / cols)}, col: ${index % cols}) has ${adjacentMines} adjacent mines.`);
 
             });
         }
+
+//+++++++++++++++++++++++++++++++++++++++Test place mines++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++Test place mines++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
 
         function isDifferentRow(index, adjacentIndex, direction) {
             if (direction === -1 || direction === 1) {
@@ -152,6 +220,127 @@ let gameOver = false;
             }
             return false;
         }
+        
+
+
+
+
+
+
+
+
+//=====================================================================================================
+//=======================================Function: right, left, both click=============================
+
+
+//===============================================left==================================================
+        function handleLeftClick(cell, index) {
+            
+            if (cell.isRevealed || gameOver || cell.isFlagged) {
+                return;
+            }
+        
+           
+            cell.isRevealed = true;
+        
+            
+            if (cell.isMine) {
+                
+                cell.style.backgroundColor = 'red';
+                
+                gameOver = true;
+                
+                alert('Game Over! You clicked on a mine.');
+            
+            } else {
+                
+                cell.style.backgroundColor = '#ddd';
+                if (cell.adjacentMines > 0) {
+                    cell.textContent = cell.adjacentMines;
+                } else {
+                    cell.textContent = '';
+                }
+               
+            }
+
+
+        }
+    
+//===============================================left==================================================
+
+
+        function handleRightClick(cell) {
+            
+            if (cell.isFlagged) {
+                
+                cell.isFlagged = false;
+                
+                cell.textContent = '';
+                
+                cell.style.backgroundColor = '';
+            } else {
+                
+                
+                cell.isFlagged = true;
+                
+                cell.textContent = '🚩';
+                
+                cell.style.backgroundColor = 'yellow';
+            }
+        }
+        
+//===============================================both==================================================
+        function handleBothClick(cell, index) {
+            
+            const directions = [
+                -cols - 1,  
+                -cols,     
+                -cols + 1,  
+                -1,         
+                1,          
+                cols - 1,   
+                cols,       
+                cols + 1    
+            ];
+        
+           
+            let flaggedMines = 0;
+        
+            
+            directions.forEach(function(direction) {
+            
+                const adjacentIndex = index + direction;
+        
+                
+                if (adjacentIndex >= 0 && adjacentIndex < cells.length && !isDifferentRow(index, adjacentIndex, direction)) {
+                    const adjacentCell = cells[adjacentIndex];
+                    
+                    if (adjacentCell.isFlagged) {
+                        flaggedMines++;
+                    }
+                }
+            });
+        
+            
+            if (flaggedMines === cell.adjacentMines) {
+                
+                directions.forEach(function(direction) {
+                    const adjacentIndex = index + direction;
+        
+                
+                    if (adjacentIndex >= 0 && adjacentIndex < cells.length && !isDifferentRow(index, adjacentIndex, direction)) {
+                        const adjacentCell = cells[adjacentIndex];
+                       
+                        if (!adjacentCell.isFlagged && !adjacentCell.isRevealed) {
+                            handleLeftClick(adjacentCell, adjacentIndex);
+                        }
+                    }
+                });
+            }
+        }
+
+//=======================================Function: right, left, both click=============================
+//=====================================================================================================
         
     });
     
