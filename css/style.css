@@ -74,7 +74,7 @@
 #startbtn {
     width: 120px;
     color: #FFFFFF;
-    background: linear-gradient(45deg, #FF6F61, #FF8E71);
+    background: linear-gradient(45deg, #bc2f3d, #000002);
     border: none;
     cursor: pointer;
     margin-left: auto;
@@ -83,6 +83,7 @@
     font-weight: bold;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    
     
 }
 
@@ -101,9 +102,9 @@
 #score-area {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 10px;
     gap: 10px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 #score-area p {
@@ -182,7 +183,7 @@
 
 
 #game-area {
-    margin-top: 20px;
+    margin-top: 10px;
     width: auto;
     height: auto;
     border: 2px solid #1F3B4D;
@@ -229,9 +230,11 @@
 }
 
 #restartBtn {
-    width: 120px;
+    width: 200px;
+    height: 40px;
+    margin-top: 10px;
     color: #FFFFFF;
-    background: linear-gradient(45deg, #007bff, #00bfff);
+    background: linear-gradient(45deg, #8e06e9, #00bfff);
     border: none;
     cursor: pointer;
     border-radius: 8px;
@@ -242,7 +245,6 @@
 }
 
 #restartBtn:hover {
-    background: linear-gradient(45deg, #00bfff, #007bff);
     transform: scale(1.30);
 }
 
