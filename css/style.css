@@ -320,3 +320,18 @@
 .cell.revealed {
     animation: reveal 0.3s ease-out;
 }
+
+@keyframes flag {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.cell.is-flagged {
+    animation: flag 0.3s ease-out;
+}
