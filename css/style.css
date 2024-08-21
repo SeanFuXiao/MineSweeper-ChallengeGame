@@ -15,6 +15,7 @@
         background-repeat: no-repeat; 
         background-attachment: fixed; 
     }
+}
     
 
 #title {
@@ -94,14 +95,15 @@
     transform: scale(0.70);  
 }
 
-}
+
 
 
 #score-area {
     display: flex;
     justify-content: space-between;
-    margin-top: 50px;
+    margin-top: 30px;
     gap: 10px;
+    margin-bottom: 40px;
 }
 
 #score-area p {
@@ -153,7 +155,7 @@
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
     #score-area {
         flex-direction: column;
         align-items: stretch;
@@ -167,35 +169,53 @@
     #dropdownbox, #startbtn {
         width: 100%;
     }
+
+    #game-area {
+        width: 100%;
+        max-width: 100%; 
+        margin: 0 auto; 
+    }
+   
+    
 }
+
+
 
 #game-area {
     margin-top: 20px;
-    width: 100%;
-    max-width: 800px;
+    width: auto;
     height: auto;
     border: 2px solid #1F3B4D;
     background-color: #ffffff;
+    background-size: 100% 100%;
     display: grid;
     gap: 1px;
     box-sizing: border-box;
+    margin: auto;
+    background-image: url('./gameareabackgeound.png');
 }
 
 .cell {
-    width: 100%;
-    padding-bottom: 100%;
-    background-color: #bfbfbf;
-    border: 1px solid #ffffff; 
+    width: 30px;
+    height: 30px;
+    /* background-color: #C2B280; */
+    
+    border: 1px solid #4B3E2F; 
     cursor: pointer;
     position: relative;
     display: inline-block;
+    
 }
 
 .cell:hover {
-    background-color: #666363; 
+    /* background-color: #E3C16F;  */
+    background-color: rgba(255, 217, 0, 0.879); 
 }
 
 .cell:active {
-    background-color: #3bd209;
-}
+    /* background-color: #1E90FF; */
+    background-color: rgba(30, 144, 255, 0.6);
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.4);
+    transform: translateY(1px);
 
+}

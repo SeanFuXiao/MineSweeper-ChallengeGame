@@ -34,43 +34,54 @@ let gameOver = false;
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    const startBtn = document.getElementById('startbtn');
-    const gameArea = document.getElementById('game-area');
-    const dropdownBox = document.getElementById('dropdownbox');
-
-    startBtn.addEventListener('click', function () {
-        const difficulty = dropdownBox.value;
-        let rows, cols;
-
-        if (difficulty === 'Easy') {
-            rows = 10;
-            cols = 10;
-        } else if (difficulty === 'Medium') {
-            rows = 20;
-            cols = 20;
-        } else if (difficulty === 'Hard') {
-            rows = 30;
-            cols = 30;
-        }
-
-        gameArea.innerHTML = '';
-
+    document.addEventListener('DOMContentLoaded', function () {
+        const startBtn = document.getElementById('startbtn');
+        const gameArea = document.getElementById('game-area');
+        const dropdownBox = document.getElementById('dropdownbox');
     
-        gameArea.style.display = 'grid';
-
-        gameArea.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
-
-        gameArea.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-
-        gameArea.style.gap = '1px';
-
-        
-        const totalCells = rows * cols;
-        for (let i = 0; i < totalCells; i++) {
-            const cell = document.createElement('div');
-            cell.classList.add('cell');
-            gameArea.appendChild(cell);
-        }
+        startBtn.addEventListener('click', function () {
+            const difficulty = dropdownBox.value;
+            let rows, cols;
+            const cellSize = 30;  
+            const gapSize = 1;    
+    
+            if (difficulty === 'Easy') {
+                rows = 15;
+                cols = 15;
+            } else if (difficulty === 'Medium') {
+                rows = 20;
+                cols = 20;
+            } else if (difficulty === 'Hard') {
+                rows = 25;
+                cols = 25;
+            }
+    
+            gameArea.innerHTML = '';
+    
+           
+            gameArea.style.display = 'grid';
+            gameArea.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+            gameArea.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+            gameArea.style.gap = `${gapSize}px`;
+    
+            
+            const totalWidth = cols * cellSize + (cols - 1) * gapSize + 4;  
+            const totalHeight = rows * cellSize + (rows - 1) * gapSize + 4;
+    
+            
+            gameArea.style.width = `${totalWidth}px`;
+            gameArea.style.height = `${totalHeight}px`;
+    
+           
+            const totalCells = rows * cols;
+            for (let i = 0; i < totalCells; i++) {
+                const cell = document.createElement('div');
+                cell.classList.add('cell');
+                cell.style.width = `${cellSize}px`;
+                cell.style.height = `${cellSize}px`;
+                gameArea.appendChild(cell);
+            }
+        });
     });
-});
+    
+    
