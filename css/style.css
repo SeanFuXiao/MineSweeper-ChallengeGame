@@ -482,9 +482,9 @@ body.dark-mode #dropdownbox, body.dark-mode #startbtn {
     max-width: 800px;
     margin: 25px auto;
     padding: 10px 10px 0px; 
-    background-color: #f0f0f0;
+    background-color: #F4F4F4;
     border-radius: 10px;
-    border: 2px solid #1F3B4D;
+    border: 2px solid #6E7B8B;
     text-align: left;
     font-size: 1.2rem;
     line-height: 0.6;
@@ -499,7 +499,7 @@ body.dark-mode #dropdownbox, body.dark-mode #startbtn {
 #game-instructions p {
     
     margin: 10px 0;
-    color: #333;
+    color: #333333;
     font-size: 1.2rem;
     line-height: 1.5;
     text-shadow: 2px 2px 8px rgba(21, 22, 22, 0.546);
