@@ -46,6 +46,43 @@ document.addEventListener('DOMContentLoaded', function () {
     const restartBtn = document.getElementById('restartBtn');
     const timeElement = document.getElementById('time');
 
+//=====================================================================================================
+//================================================dark mode============================================
+
+    const darkmodeToggle = document.getElementById('darkmodeToggle');
+
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        darkmodeToggle.checked = true;
+    }
+
+    darkmodeToggle.addEventListener('change', function () {
+        if (darkmodeToggle.checked) {
+            document.body.classList.add('dark-mode');
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            document.body.classList.remove('dark-mode');
+            localStorage.setItem('darkMode', 'disabled');
+        }
+    });
+
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const darkmodeToggle = document.getElementById('darkmodeToggle');
+        
+        
+        document.body.classList.remove('dark-mode');
+        
+        darkmodeToggle.checked = false;
+        darkmodeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', darkmodeToggle.checked);
+        });
+    });
+    
+
+
+//================================================dark mode============================================
+//=====================================================================================================
 
 
 

@@ -194,6 +194,7 @@
     box-sizing: border-box;
     margin: auto;
     background-image: url('./gameareabackgeound.png');
+    border: 2px solid transparent;
 }
 
 .cell {
@@ -384,3 +385,74 @@
     font-weight: bold;
     text-shadow: 2px 2px 8px rgb(152, 2, 245);
 }
+
+#container.dark-mode {
+    filter: brightness(0.6) contrast(1.2);
+    transition: filter 0.3s ease;
+}
+
+
+.darkmode-on, .darkmode-off {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
+.darkmode-on {
+    left: 8px;
+}
+
+.darkmode-off {
+    color:#000002;
+    right: 8px;
+}
+
+.darkmode-checkbox:checked + .darkmode-label .darkmode-on {
+    display: block;
+}
+
+.darkmode-checkbox:not(:checked) + .darkmode-label .darkmode-off {
+    display: block;
+}
+
+.darkmode-checkbox:checked + .darkmode-label .darkmode-off {
+    display: none;
+}
+
+.darkmode-checkbox:not(:checked) + .darkmode-label .darkmode-on {
+    display: none;
+}
+
+body.dark-mode {
+    background-color: #2c2c2c;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./body-background.jpg');
+    color: #e0e0e0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode #message-box {
+    background: linear-gradient(135deg, #4444441c, #222222);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode #game-area {
+    background-color: #2a2a2a17;
+    border-color: #4444448e;
+}
+
+body.dark-mode .cell {
+    background-color: #44444481;
+    color: #ffffff;
+    border-color: #55555576;
+}
+
+body.dark-mode #dropdownbox, body.dark-mode #startbtn {
+    background-color: #333333;
+    color: #ffffff;
+    border-color: #555555;
+}
+
+
