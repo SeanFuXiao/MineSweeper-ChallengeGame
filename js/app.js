@@ -3,7 +3,7 @@ console.log('hello');
 /*-------------------------------- Constants --------------------------------*/
 
 const DIFFICULTY_LEVELS = {
-    Easy: { rows: 9, cols: 9, totalMines: 1 },
+    Easy: { rows: 9, cols: 9, totalMines: 10 },
     Medium: { rows: 16, cols: 16, totalMines: 30 },
     Hard: { rows: 23, cols: 23, totalMines: 50 },
 };
