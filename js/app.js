@@ -46,6 +46,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const restartBtn = document.getElementById('restartBtn');
     const timeElement = document.getElementById('time');
 
+    
+   
+
+
 //=====================================================================================================
 //================================================dark mode============================================
 

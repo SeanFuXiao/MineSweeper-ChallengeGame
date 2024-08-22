@@ -6,7 +6,7 @@
     <title>Mine Sweeper</title>
     <script defer src="./js/app.js"></script>
     <link rel="stylesheet" href="./css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
 </head>
 <body>
@@ -14,7 +14,32 @@
 
 
     <h1 id="title">Mine Sweeper</h1>
-    
+
+    <div id="game-instructions">
+    <h2>How to Play</h2>    
+    <p>
+       - <strong>Left-Click</strong> &nbsp;to reveal a cell.
+        <span class="mouse-simulate" id="left-click-demo">
+            <span class="mouse-left"></span>
+        </span>
+        <br>
+        - <strong>Right-Click</strong> to flag a cell as a mine.
+        <span class="mouse-simulate" id="right-click-demo">
+            <span class="mouse-right"></span>
+        </span>
+        <br>
+        - <strong>Both-Click</strong> &nbsp;to reveal surrounding cells.
+        <span class="mouse-simulate" id="both-click-demo">
+            <span class="mouse-left"></span>
+            <span class="mouse-divider"></span>
+            <span class="mouse-right"></span>
+        </span>
+        <br>
+        - <strong>Win Condition:</strong> &nbsp;Flag all mines.&nbsp;&nbsp;&nbsp;🏴‍☠️🏴‍☠️🏴‍☠️
+        <br>
+        - <strong>Lose Condition:</strong> Trigger a Mines.&nbsp;&nbsp;💥💥💥
+    </p>
+ </div>
 
     <div id="select-difficulty">
         <label for="dropdownbox">Select Difficulty:</label>
@@ -59,4 +84,10 @@
     </div>
 
 </body>
+
+<footer id="footer">
+    <p>&copy; 2024 Mine Sweeper by Fu,Xiao (Sean). All rights reserved.</p>
+    <a href="mailto:seanfuxiao@gmail.com">seanfuxiao@gmail.com</a></p>
+</footer>
+
 </html>
