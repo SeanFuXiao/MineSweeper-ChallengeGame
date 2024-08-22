@@ -449,6 +449,7 @@ function checkWinCondition() {
 
         setTimeout(() => {
             showMessage('Congratulations! YOU WIN!');
+            document.getElementById('mine-left').textContent = `Mines left: 0`;
         }, 0);
     }
 }
