@@ -100,6 +100,10 @@ document.addEventListener('DOMContentLoaded', function () {
 //=========================================Create cells for new game===================================
     function newGame() {
         
+
+        const restartContainer = document.getElementById('restart-container');
+        restartContainer.style.display = 'flex';
+
         const difficulty = dropdownBox.value;
         ({ rows, cols, totalMines } = DIFFICULTY_LEVELS[difficulty]);
 
