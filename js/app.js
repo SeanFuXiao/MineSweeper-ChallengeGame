@@ -3,7 +3,7 @@ console.log('hello');
 /*-------------------------------- Constants --------------------------------*/
 
 const DIFFICULTY_LEVELS = {
-    Easy: { rows: 9, cols: 9, totalMines: 10 },
+    Easy: { rows: 9, cols: 9, totalMines: 1 },
     Medium: { rows: 16, cols: 16, totalMines: 30 },
     Hard: { rows: 23, cols: 23, totalMines: 50 },
 };
@@ -337,6 +337,8 @@ function isDifferentRow(index, adjacentIndex, direction) {
             stopTimer();
             // showMessage('Game Over! YOU LOSE!');
             revealAllMines();
+
+            shakeGameArea();
         } else {
             cell.style.backgroundColor = '#8FBC8F';
             cell.textContent = cell.adjacentMines > 0 ? cell.adjacentMines : '';
@@ -346,7 +348,15 @@ function isDifferentRow(index, adjacentIndex, direction) {
             checkWinCondition();
             
         }
-       
+        function shakeGameArea() {
+            const gameArea = document.getElementById('game-area');
+            gameArea.classList.add('shake');
+        
+            
+            setTimeout(() => {
+                gameArea.classList.remove('shake');
+            }, 500);
+        }
     }
 
 
@@ -486,7 +496,10 @@ function checkWinCondition() {
     const revealedCells = cells.filter(cell => cell.isRevealed);
     if (revealedCells.length === cells.length - totalMines) {
         gameOver = true;
+
         stopTimer();  
+
+        triggerConfetti();
 
         setTimeout(() => {
             showMessage('Congratulations! YOU WIN!');
@@ -510,6 +523,37 @@ function checkWinCondition() {
         const seconds = Math.floor((elapsedTime / 1000) % 60);
         const minutes = Math.floor((elapsedTime / 1000) / 60);
         timeElement.textContent = `Time: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    function triggerConfetti() {
+        const duration = 5 * 1000;
+        const animationEnd = Date.now() + duration;
+        
+        confetti({
+            particleCount: 250,
+            startVelocity: 80,
+            spread: 80,
+            origin: { x: 0.5, y: 1 },
+            zIndex: 1000,
+            scalar: 1.5,
+        });
+    
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+    
+        const interval = setInterval(function() {
+            const timeLeft = animationEnd - Date.now();
+    
+            if (timeLeft <= 0) {
+                return clearInterval(interval);
+            }
+    
+            const particleCount = 50 * (timeLeft / duration);
+            
+            confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+            confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+        }, 250);
     }
 //==============================================win condition==========================================
 //=====================================================================================================
