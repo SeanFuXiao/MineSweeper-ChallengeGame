@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //=====================================================================================================
 //===========================================calculateAdjacenMines=====================================
-    function calculateAdjacentMines() {
+   function calculateAdjacentMines() {
         const directions = [
             -cols - 1, -cols, -cols + 1,  
             -1,        1,   
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 ) {
                     adjacentMines++;
                 }
-            });
+            }); 
             cell.adjacentMines = adjacentMines;
 
 
