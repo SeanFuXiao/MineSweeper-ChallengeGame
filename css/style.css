@@ -3,20 +3,24 @@
     
     font-family:monospace;
     box-sizing: border-box; 
-
-    body {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 0 20px;
-        background-color: #5bb3e967;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.09)), url('./body-background.jpg');
-        background-size: cover; 
-        background-position: center;
-        background-repeat: no-repeat; 
-        background-attachment: fixed; 
-    }
-}
     
+}
+
+body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    background-color: #5bb3e967;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.09)), url('./body-background.jpg');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    
+    
+}
+
+
 
 #title {
     display: flex;
@@ -374,7 +378,7 @@
 }
 
 .darkmode-checkbox:checked + .darkmode-label {
-    background-color: #403f40;
+    background-color: #d566d5;
 }
 
 .darkmode-checkbox:checked + .darkmode-label .darkmode-slider {
@@ -482,9 +486,10 @@ body.dark-mode #dropdownbox, body.dark-mode #startbtn {
     max-width: 800px;
     margin: 25px auto;
     padding: 10px 10px 0px; 
-    background-color: #F4F4F4;
+    background-color: #f9fbf86b;
     border-radius: 10px;
     border: 2px solid #6E7B8B;
+    
     text-align: left;
     font-size: 1.2rem;
     line-height: 0.6;
@@ -593,6 +598,7 @@ body.dark-mode #game-instructions strong {
     margin: 0;
     box-sizing: border-box;
     text-shadow: 2px 2px 8px rgb(254, 254, 251);
+
 }
 
 #footer a {
