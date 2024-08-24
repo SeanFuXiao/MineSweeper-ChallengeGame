@@ -130,9 +130,12 @@ Don't forget to give the project a star if you liked it! ⭐
 
 ## Contact
 
-Fu,Xiao (Sean) - [Email](seanfuxiao@gmail.com)
+If you have any questions or suggestions, feel free to contact me:
+
+- **Email**: [seanfuxiao@gmail.com](mailto:seanfuxiao@gmail.com)
 
 Project Link: [https://github.com/SeanFuXiao/MineSweeper-ChallengeGame](https://github.com/SeanFuXiao/MineSweeper-ChallengeGame)
+
 
 [back to top](#table-of-contents)
 
